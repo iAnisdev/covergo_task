@@ -6,6 +6,10 @@ const routes: Array<RouteRecordRaw> = [
     path: '/',
     name: 'start',
     component: StartView
+  }, {
+    path: '/form',
+    name: 'form',
+    component: () => import(/* webpackChunkName: "form" */ '../views/form.vue')
   }
 ]
 
