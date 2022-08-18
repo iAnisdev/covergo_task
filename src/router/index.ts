@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import StartView from '../views/start.vue'
+import StartView from '../views/startView.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -9,7 +9,7 @@ const routes: Array<RouteRecordRaw> = [
   }, {
     path: '/form',
     name: 'form',
-    component: () => import(/* webpackChunkName: "form" */ '../views/form.vue')
+    component: () => import(/* webpackChunkName: "form-chunk" */ '../views/formView.vue')
   }
 ]
 
