@@ -9,7 +9,7 @@
           <p class="mt-4 text-base leading-6 text-[#1A1A1A]">Lets buy Some Insurance. It is going to take only a few
             steps</p>
           <button type="button"
-            class="inline-flex items-center mt-6 border border-transparent text-sm leading-4 bg-black px-8 py-2 font-medium rounded-sm shadow-sm text-white">Start</button>
+            class="inline-flex items-center mt-6 border border-transparent text-sm leading-4 bg-black px-8 py-2 font-medium rounded-sm shadow-sm text-white" @click="goToNext">Start</button>
         </div>
       </div>
     </div>
@@ -25,6 +25,9 @@ export default defineComponent({
     const router = useRouter();
     function goToNext() {
       router.push('/form');
+    }
+    return {
+      goToNext
     }
   }
 });
