@@ -1,12 +1,12 @@
 <template>
   <div class=" max-w-4xl mx-auto py-4 px-2 sm:px-6 lg:px-8">
-    <div class="bg-nuetral-50 rounded-lg">
+    <div class="bg-nuetral-50 rounded-lg" v-if="showForm">
       <div class="px-6 sm:px-16">
         <div class="lg:self-center">
           <h2 class="text-small font-bold text-[#1A1A1A] sm:text-small text-center">
             <span class="block">Tell us about yourself</span>
           </h2>
-          <form class="px-6  w-52">
+          <form class="px-6 w-52">
             <div class="mt-2">
               <label for="name" class="block text-sm text-gray-600">Name</label>
               <div class="mt-1">
@@ -56,6 +56,24 @@
         </div>
       </div>
     </div>
+    <div v-else>
+      
+  <div class="text-center max-w-4xl mx-auto py-4 px-2 sm:px-6 lg:px-8">
+    <div class="bg-nuetral-50 rounded-lg">
+      <div class="pt-10 pb-12 px-6 sm:pt-16 sm:px-16 lg:py-16 lg:pr-0 xl:py-20 xl:px-20">
+        <div class="lg:self-center">
+          <h2 class="text-xl font-bold text-[#1A1A1A] sm:text-xl">
+            <span class="block">Ooops!</span>
+          </h2>
+          <p class="mt-4 text-base leading-6 text-[#1A1A1A]">Your age is over the accepted limit.</p>
+          <p class="text-base leading-6 text-[#1A1A1A]">We are sorry but we cannot insure you for now.</p>
+          <button type="button"
+            class="inline-flex items-center mt-6 border border-transparent text-sm leading-4 bg-black px-16 py-1 font-medium rounded-sm shadow-sm text-white">Ok :)</button>
+        </div>
+      </div>
+    </div>
+  </div>
+    </div>
   </div>
 </template>
 
@@ -65,6 +83,7 @@ export default defineComponent({
   name: 'StartView',
   data() {
     return {
+      showForm: false,
       packages: [
         {
           name: 'standard',
