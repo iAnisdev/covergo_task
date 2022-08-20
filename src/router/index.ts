@@ -10,6 +10,10 @@ const routes: Array<RouteRecordRaw> = [
     path: '/form',
     name: 'form',
     component: () => import(/* webpackChunkName: "form-chunk" */ '../views/formView.vue')
+  }, {
+    path: '/summary',
+    name: 'summary',
+    component: () => import(/* webpackChunkName: "summary-chunk" */ '../views/summaryView.vue')
   }
 ]
 
