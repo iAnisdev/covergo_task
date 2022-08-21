@@ -17,7 +17,7 @@
             <div class="mt-2">
               <label for="age" class="block text-sm text-gray-600">Age</label>
               <div class="mt-1">
-                <input type="number" name="age" v-model="userInfo.age" id="age" class="border border-gray-400 px-2 w-36"
+                <input type="number" name="age" v-model="userInfo.age" id="age" min="1" class="border border-gray-400 px-2 w-36"
                   placeholder="Enter your age" required>
               </div>
             </div>
@@ -77,7 +77,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent} from 'vue';
+import { defineComponent } from 'vue';
 import { mapGetters , mapActions} from 'vuex';
 export default defineComponent({
   name: 'StartView',
@@ -126,8 +126,10 @@ export default defineComponent({
     }
   },
   mounted() {
-    this.setCountry(this.countries[0])
-    this.setPackage(this.packages[0])
+    if(this.userInfo.name == ''){
+      this.setCountry(this.countries[0])
+      this.setPackage(this.packages[0])
+    }
   },
 });
 </script>

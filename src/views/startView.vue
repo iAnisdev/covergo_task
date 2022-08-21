@@ -17,12 +17,19 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent , onMounted} from 'vue';
 import { useRouter } from 'vue-router';
+import { useStore } from 'vuex';
 export default defineComponent({
   name: 'StartView',
   setup() {
     const router = useRouter();
+    const store = useStore();
+
+    onMounted(() => {
+      store.dispatch('resetStore')
+    })
+
     function goToNext() {
       router.push('/form');
     }

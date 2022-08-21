@@ -58,7 +58,14 @@ export const store = createStore({
                 }
             })
             context.commit('setPackages', packages)
+        },
+        resetStore(context: any){
+            context.commit('setUserInfo', {
+                name: '',
+                age: 0,
+                country: {} as country,
+                package: {} as pkg
+            })
         }
-
     }
 })

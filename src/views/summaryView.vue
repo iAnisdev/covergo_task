@@ -6,7 +6,6 @@
                     <h2 class="text-small font-bold text-[#1A1A1A] sm:text-small text-center">
                         <span class="block">Summary</span>
                     </h2>
-                    {{userInfo}}
                     <h5 class="text-xs font-bold text-[#1A1A1A] sm:text-xs text-center mt-4">
                         <span class="block">{{ userInfo.name }}</span>
                     </h5>
