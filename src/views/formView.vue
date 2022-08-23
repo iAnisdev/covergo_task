@@ -17,8 +17,8 @@
             <div class="mt-2">
               <label for="age" class="block text-sm text-gray-600">Age</label>
               <div class="mt-1">
-                <input type="number" name="age" v-model="userInfo.age" id="age" min="1" class="border border-gray-400 px-2 w-36"
-                  placeholder="Enter your age" required>
+                <input type="number" name="age" v-model="userInfo.age" id="age" min="1"
+                  class="border border-gray-400 px-2 w-36" placeholder="Enter your age" required>
               </div>
             </div>
             <div class="mt-2">
@@ -31,23 +31,19 @@
 
             <div class="mt-6">
               <div v-for="(pkg, index) in packages" :package="pkg" :key="index">
-                <div class="flex items-center py-1">
-                  <input :id="pkg.name" name="notification-method" type="radio"
-                    class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" v-model="userInfo.package" :checked="userInfo.package.name === pkg.name"  @change="changePackage(pkg)"/>
-                  <label :for="pkg.name" class="ml-3 block text-xs font-medium text-gray-700">
-                    {{ pkg.title }} <span v-if="pkg.additional_price > 0">(+{{ pkg.additional_price || 0 }}{{userInfo.country.currency}},  {{ pkg.additional }}%)</span>
-                  </label>
-                </div>
+                <PackageSelect :package="pkg" :isChecked="userInfo.package.name === pkg.name"
+                  @change="changePackage(pkg)" />
               </div>
             </div>
             <div class="mt-6">
               <h5 class="text-xs font-bold text-[#1A1A1A] sm:text-xs text-center">
-                <span class="block">Your Premium is: {{premium}}{{userInfo.country.currency}}</span>
+                <span class="block">Your Premium is: {{ premium }}{{ userInfo.country.currency }}</span>
               </h5>
             </div>
             <div class="flex justify-center">
               <button type="button"
-                class="inline-flex items-center mt-6 border border-gray-400 text-sm leading-4 bg-whte px-4 py-1 font-medium rounded-sm shadow-sm text-gray-600" @click="goBack">Back</button>
+                class="inline-flex items-center mt-6 border border-gray-400 text-sm leading-4 bg-whte px-4 py-1 font-medium rounded-sm shadow-sm text-gray-600"
+                @click="goBack">Back</button>
               <button type="submit"
                 class="inline-flex items-center ml-4 mt-6 border border-transparent text-sm leading-4 bg-black px-4 py-1 font-medium rounded-sm shadow-sm text-white">Next</button>
             </div>
@@ -66,7 +62,8 @@
               <p class="mt-4 text-base leading-6 text-[#1A1A1A]">Your age is over the accepted limit.</p>
               <p class="text-base leading-6 text-[#1A1A1A]">We are sorry but we cannot insure you for now.</p>
               <button type="button"
-                class="inline-flex items-center mt-6 border border-transparent text-sm leading-4 bg-black px-16 py-1 font-medium rounded-sm shadow-sm text-white" @click="goBack">Ok
+                class="inline-flex items-center mt-6 border border-transparent text-sm leading-4 bg-black px-16 py-1 font-medium rounded-sm shadow-sm text-white"
+                @click="goBack">Ok
                 :)</button>
             </div>
           </div>
@@ -78,10 +75,14 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { mapGetters , mapActions} from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
+import PackageSelect from '@/components/PackageSelect.vue';
 export default defineComponent({
   name: 'StartView',
-  data(){
+  components: {
+    PackageSelect
+  },
+  data() {
     return {
       showForm: true
     }
@@ -96,37 +97,37 @@ export default defineComponent({
       return (Number(this.userInfo.age)) * 10 * this.userInfo.country.rate
     }
   },
-  methods:{
+  methods: {
     ...mapActions({
       setCountry: 'setCountry',
       updatePackages: 'updatePackages',
       setPackage: 'setPackage'
     }),
-    changePackage(pkg: any){
+    changePackage(pkg: any) {
       this.setPackage(pkg)
     },
-    goBack(){
+    goBack() {
       this.$router.go(-1)
     },
-    submitForm(e: any){
+    submitForm(e: any) {
       e.preventDefault();
-      if(this.userInfo.age > 100){
+      if (this.userInfo.age > 100) {
         this.showForm = false;
-      }else{
+      } else {
         this.$router.push('/summary')
       }
     }
   },
   watch: {
-    userInfo:{
+    userInfo: {
       deep: true,
-      handler(){
-         this.updatePackages()
+      handler() {
+        this.updatePackages()
       }
     }
   },
   mounted() {
-    if(this.userInfo.name == ''){
+    if (this.userInfo.name == '') {
       this.setCountry(this.countries[0])
       this.setPackage(this.packages[0])
     }
