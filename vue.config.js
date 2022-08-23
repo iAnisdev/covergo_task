@@ -8,8 +8,5 @@ module.exports = defineConfig({
         args[0].title = "Covergo Test Task | Wizard Form";
         return args;
       })
-  },
-  publicPath: process.env.NODE_ENV === 'production'
-    ? '/covergo-task/'
-    : '/'
+  }
 })
